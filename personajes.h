@@ -6,14 +6,16 @@
 
 class Personaje : public QGraphicsPixmapItem {
 public:
-    Personaje(const QString &rutaSprite, int totalFrames, int fila, QGraphicsItem *parent = nullptr);
+    explicit Personaje(const QString &rutaSprite, int totalFrames, int fila, QGraphicsItem *parent = nullptr);
+    explicit Personaje(const QString &rutaSprite, int totalFrames, int fila, float x, float y, QGraphicsItem *parent = nullptr); // Constructor para NPC
+    ~Personaje();
     void siguienteFrame(bool modoEspecial);
     void mover(int dx, int dy);
     void iniciarAnimacionEspecial();
     void detenerAnimacionEspecial();
     void alternarModoEspecial();
     bool estaAnimando() const;
-
+    void moverPersonajeAdicional(int velocidad, float minX, float maxX);
 private:
     QPixmap hojaSprite;
     int frameActual;
