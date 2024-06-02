@@ -6,7 +6,6 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QKeyEvent>
-#include "objetos.h"
 #include "personajes.h"
 
 class MainWindow : public QMainWindow {
@@ -24,6 +23,7 @@ private slots:
     void moverPersonaje();
     void detenerAnimacionEspecial();
 
+
 private:
     QGraphicsView *vista;
     QGraphicsScene *escena;
@@ -33,6 +33,8 @@ private:
     bool moviendo;
     bool animando;
     Personaje *personaje;
+    Personaje *npc1;
+    Personaje *npc2;
     QGraphicsPixmapItem *fondoItem1;
     QGraphicsPixmapItem *fondoItem2;
     QGraphicsPixmapItem *fondoItem3;
@@ -41,6 +43,10 @@ private:
     float fondoX2;
     float fondoX3;
     float fondoX4;
+    float velocidadSalto;
+    float gravedad;
+    bool saltando;
+    bool enElAire;
 };
 
 #endif // MAINWINDOW_H
