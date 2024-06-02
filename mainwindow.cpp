@@ -15,19 +15,34 @@ MainWindow::MainWindow(QWidget *parent)
     fondoX1(0),
     fondoX2(0),
     fondoX3(0),
-    fondoX4(0) // Agregamos inicialización de fondoX4
+    fondoX4(0), // Agregamos inicialización de fondoX4
+    velocidadSalto(0),
+    gravedad(15), // Ajustar la gravedad según sea necesario
+    saltando(false),
+    enElAire(false)
 {
     personaje = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/LABORATORIO 5/LABORATORIO5/imagenes/sprites/Prisoner_1.png", 6, 4);
     personaje->setZValue(2);
 
-    // Cambiar la posición inicial del personaje
-    int posicionInicialX = 200; // Ajusta este valor según sea necesario
-    int posicionInicialY = 530; // Ajusta este valor según sea necesario
+    npc1 = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/LABORATORIO5/imagenes/sprites/blanco.png", 8, 1);
+    npc1->setZValue(2);
+    npc2 = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/LABORATORIO5/imagenes/sprites/blanco.png", 8, 1);
+    npc2->setZValue(2);
+
+    int posicionInicialX = 200;
+    int posicionInicialY = 530;
     personaje->setPos(posicionInicialX, posicionInicialY);
+
+    int posicionInicialX2 = 300;
+    int posicionInicialY2 = 490;
+    npc2->setPos(posicionInicialX2, posicionInicialY2);
+
+    int posicionInicialX3 = 400;
+    int posicionInicialY3 = 490;
+    npc1->setPos(posicionInicialX3, posicionInicialY3);
 
     QPixmap fondo("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/LABORATORIO 5/LABORATORIO5/imagenes/escenas/escena nivel 1.jpg");
 
-    // Crear cuatro elementos de fondo para efecto infinito
     fondoItem1 = new QGraphicsPixmapItem(fondo);
     fondoItem2 = new QGraphicsPixmapItem(fondo);
     fondoItem3 = new QGraphicsPixmapItem(fondo);
@@ -36,12 +51,12 @@ MainWindow::MainWindow(QWidget *parent)
     fondoX1 = 0;
     fondoX2 = fondo.width();
     fondoX3 = 2 * fondo.width();
-    fondoX4 = 3 * fondo.width(); // Establecemos la posición inicial de fondoX4
+    fondoX4 = 3 * fondo.width();
 
     fondoItem1->setPos(fondoX1, 0);
     fondoItem2->setPos(fondoX2, 0);
     fondoItem3->setPos(fondoX3, 0);
-    fondoItem4->setPos(fondoX4, 0); // Ajustamos la posición en Y del cuarto fondo
+    fondoItem4->setPos(fondoX4, 0);
 
     fondoItem1->setZValue(0);
     fondoItem2->setZValue(0);
@@ -51,40 +66,43 @@ MainWindow::MainWindow(QWidget *parent)
     escena->addItem(fondoItem1);
     escena->addItem(fondoItem2);
     escena->addItem(fondoItem3);
-    escena->addItem(fondoItem4); // Agregamos el cuarto fondo a la escena
+    escena->addItem(fondoItem4);
 
     setCentralWidget(vista);
     vista->setScene(escena);
     escena->addItem(personaje);
+    escena->addItem(npc1);
+    escena->addItem(npc2);
 
     connect(temporizador, &QTimer::timeout, this, &MainWindow::moverPersonaje);
     temporizador->start(150);
 
     connect(temporizadorEspecial, &QTimer::timeout, this, &MainWindow::detenerAnimacionEspecial);
 
-    // Configurar el QGraphicsView para seguir al personaje
     vista->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     vista->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     vista->centerOn(personaje);
 }
 
-
 MainWindow::~MainWindow() {
+    delete npc1;
+    delete npc2;
 }
 
 void MainWindow::moverPersonaje() {
-    if (moviendo || personaje->estaAnimando()) {
+    if (moviendo || personaje->estaAnimando() || saltando) {
         personaje->siguienteFrame(modoEspecial);
+        npc1->siguienteFrame(modoEspecial);
+        npc2->siguienteFrame(modoEspecial);
 
-        // Mover el fondo para crear efecto continuo
-        float velocidadFondo = 5.0; // Ajustar la velocidad del fondo si es necesario
+        float velocidadFondo = 5.0;
         fondoX1 -= velocidadFondo;
         fondoX2 -= velocidadFondo;
         fondoX3 -= velocidadFondo;
-        fondoX4 -= velocidadFondo; // Agregar movimiento al fondo 4
+        fondoX4 -= velocidadFondo;
 
         if (fondoX1 + fondoItem1->pixmap().width() <= 0) {
-            fondoX1 = fondoX4 + fondoItem4->pixmap().width(); // Ajustar el movimiento del fondo 1 al llegar al final
+            fondoX1 = fondoX4 + fondoItem4->pixmap().width();
         }
         if (fondoX2 + fondoItem2->pixmap().width() <= 0) {
             fondoX2 = fondoX1 + fondoItem1->pixmap().width();
@@ -92,45 +110,58 @@ void MainWindow::moverPersonaje() {
         if (fondoX3 + fondoItem3->pixmap().width() <= 0) {
             fondoX3 = fondoX2 + fondoItem2->pixmap().width();
         }
-        if (fondoX4 + fondoItem4->pixmap().width() <= vista->width()) { // Agregar condición para el fondo 4
+        if (fondoX4 + fondoItem4->pixmap().width() <= vista->width()) {
             fondoX4 = fondoX3 + fondoItem3->pixmap().width();
         }
 
         fondoItem1->setPos(fondoX1, 0);
         fondoItem2->setPos(fondoX2, 0);
         fondoItem3->setPos(fondoX3, 0);
-        fondoItem4->setPos(fondoX4, 0); // Agregar posición al fondo 4
+        fondoItem4->setPos(fondoX4, 0);
 
-        // Mover la vista para seguir al personaje
         vista->centerOn(personaje);
 
-        // Establecer los límites de movimiento del personaje en el eje X
         float minX = 0;
         float maxX = fondoX3 + fondoItem3->pixmap().width() - personaje->boundingRect().width();
         float nuevaPosX = qBound(minX, personaje->x(), maxX);
         personaje->setX(nuevaPosX);
 
-        // Establecer los límites de movimiento del personaje en el eje Y
-        float minY = 0;
-        float maxY = 530; // Límite superior en Y
-        float nuevaPosY = qBound(minY, personaje->y(), maxY);
-        personaje->setY(nuevaPosY);
+        if (saltando) {
+            personaje->setY(personaje->y() + velocidadSalto);
+            velocidadSalto += gravedad;
+
+            if (personaje->y() >= 530) {
+                personaje->setY(530);
+                saltando = false;
+                enElAire = false;
+                velocidadSalto = 0;
+            }
+        } else {
+            float minY = 0;
+            float maxY = 530;
+            float nuevaPosY = qBound(minY, personaje->y(), maxY);
+            personaje->setY(nuevaPosY);
+        }
+
+        // Movimiento de personajes adicionales
+        npc1->moverPersonajeAdicional(5, minX, maxX);
+        npc2->moverPersonajeAdicional(5, minX, maxX);
     }
 }
 
-
-
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-    int step = 5; // Define la cantidad de movimiento por cada pulsación de tecla
+    int step = 5;
 
     switch (event->key()) {
     case Qt::Key_W:
-        if (personaje->y() > 0) { // Verifica si el personaje está dentro del límite superior
-            personaje->mover(0, -step);
+        if (!saltando && !enElAire) {
+            saltando = true;
+            enElAire = true;
+            velocidadSalto = -60;
         }
         break;
     case Qt::Key_S:
-        if (personaje->y() < 530) { // Verifica si el personaje está dentro del límite inferior
+        if (personaje->y() < 530) {
             personaje->mover(0, step);
         }
         break;
@@ -170,3 +201,4 @@ void MainWindow::detenerAnimacionEspecial() {
     animando = false;
     temporizadorEspecial->stop();
 }
+
