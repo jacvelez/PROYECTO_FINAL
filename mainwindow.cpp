@@ -17,17 +17,20 @@ MainWindow::MainWindow(QWidget *parent)
     saltando(false),
     enElAire(false)
 {
+    // Crear objetos interactivos y establecer sus posiciones
     Objeto *objetoInteractivo = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
     objetoInteractivo->setPos(500, 600);
     objetoInteractivo->setSize(100, 100);
     escena->addItem(objetoInteractivo);
     objetoInteractivo->setZValue(2);
 
+    // Crear personaje principal y NPCs, establecer posiciones y añadirlos a la escena
     personaje = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/sprites/Prisoner_1.png", 6, 4);
     personaje->setZValue(2);
 
     npc1 = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/sprites/blanco.png", 8, 1);
     npc1->setZValue(2);
+
     npc2 = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/sprites/blanco.png", 8, 1);
     npc2->setZValue(2);
 
@@ -43,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     int posicionInicialY1 = 490;
     npc1->setPos(posicionInicialX1, posicionInicialY1);
 
+    // Crear y configurar los objetos para el fondo
     QPixmap fondo("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/escenas/escena nivel 1.jpg");
 
     fondoItem1 = new QGraphicsPixmapItem(fondo);
@@ -60,17 +64,20 @@ MainWindow::MainWindow(QWidget *parent)
     fondoItem3->setZValue(0);
     fondoItem4->setZValue(0);
 
+    // Agregar los fondos a la escena
     escena->addItem(fondoItem1);
     escena->addItem(fondoItem2);
     escena->addItem(fondoItem3);
     escena->addItem(fondoItem4);
 
+    // Establecer la escena y los objetos principales en la vista
     setCentralWidget(vista);
     vista->setScene(escena);
     escena->addItem(personaje);
     escena->addItem(npc1);
     escena->addItem(npc2);
 
+    // Conectar los temporizadores a sus respectivas funciones de movimiento
     connect(temporizador, &QTimer::timeout, this, &MainWindow::moverPersonaje);
     temporizador->start(150);
     QTimer *npcTimer = new QTimer(this);
@@ -78,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent)
     npcTimer->start(100);
     connect(temporizadorEspecial, &QTimer::timeout, this, &MainWindow::detenerAnimacionEspecial);
 
+    // Configurar la vista
     vista->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     vista->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     vista->centerOn(personaje);
@@ -97,7 +105,8 @@ void MainWindow::moverPersonaje() {
         vista->centerOn(personaje);
 
         if (personaje->collidesWithItem(npc1) || personaje->collidesWithItem(npc2)) {
-            personaje->setPos(200, 530);
+            mostrarMensaje("Te atraparon, intenta de nuevo");
+            personaje->setPos(200, 530); // Regresar al personaje a la posición inicial
         } else {
             float minX = 0;
             float maxX = escena->width() - personaje->boundingRect().width();
@@ -126,7 +135,6 @@ void MainWindow::moverPersonaje() {
         }
     }
 }
-
 void MainWindow::detectarColisiones() {
     QList<QGraphicsItem *> objetos = escena->items();
     foreach (QGraphicsItem *objeto, objetos) {
@@ -197,6 +205,19 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+void MainWindow::mousePressEvent(QMouseEvent *event) {
+    switch (event->button()) {
+    case Qt::LeftButton:
+        personaje->alternarModoEspecial();
+        modoEspecial = !modoEspecial;
+        animando = true;
+        temporizadorEspecial->start(900);
+        break;
+    default:
+        QMainWindow::mousePressEvent(event);
+    }
+}
+
 void MainWindow::keyReleaseEvent(QKeyEvent *event) {
     switch (event->key()) {
     case Qt::Key_A:
@@ -219,3 +240,7 @@ void MainWindow::detenerAnimacionEspecial() {
     animando = false;
     temporizadorEspecial->stop();
 }
+void MainWindow::mostrarMensaje(const QString& mensaje) {
+    QMessageBox::information(this, tr("Mensaje"), mensaje);
+}
+
