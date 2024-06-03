@@ -1,10 +1,3 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QTimer>
 #include <QKeyEvent>
 #include "personajes.h"
 
@@ -22,9 +15,12 @@ protected:
 private slots:
     void moverPersonaje();
     void detenerAnimacionEspecial();
-
+    void moverNPCsIndependientes();
 
 private:
+    const float minX = 0; // Límite izquierdo de movimiento
+    const float maxX = 4600; // Límite derecho de movimiento (ajusta este valor según sea necesario)
+
     QGraphicsView *vista;
     QGraphicsScene *escena;
     QTimer *temporizador;
@@ -47,6 +43,7 @@ private:
     float gravedad;
     bool saltando;
     bool enElAire;
+
 };
 
 #endif // MAINWINDOW_H
