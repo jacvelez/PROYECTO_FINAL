@@ -76,7 +76,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(temporizador, &QTimer::timeout, this, &MainWindow::moverPersonaje);
     temporizador->start(150);
-
+    QTimer *npcTimer = new QTimer(this);
+    connect(npcTimer, &QTimer::timeout, this, &MainWindow::moverNPCsIndependientes);
+    npcTimer->start(100);
     connect(temporizadorEspecial, &QTimer::timeout, this, &MainWindow::detenerAnimacionEspecial);
 
     vista->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -121,31 +123,37 @@ void MainWindow::moverPersonaje() {
 
         vista->centerOn(personaje);
 
-        float minX = 0;
-        float maxX = fondoX3 + fondoItem3->pixmap().width() - personaje->boundingRect().width();
-        float nuevaPosX = qBound(minX, personaje->x(), maxX);
-        personaje->setX(nuevaPosX);
-
-        if (saltando) {
-            personaje->setY(personaje->y() + velocidadSalto);
-            velocidadSalto += gravedad;
-
-            if (personaje->y() >= 530) {
-                personaje->setY(530);
-                saltando = false;
-                enElAire = false;
-                velocidadSalto = 0;
-            }
+        // Verifica colisiones con los NPCs
+        if (personaje->collidesWithItem(npc1) || personaje->collidesWithItem(npc2)) {
+            // Si hay colisión con alguno de los NPCs, devuelve al personaje al punto inicial
+            personaje->setPos(200, 530);
         } else {
-            float minY = 0;
-            float maxY = 530;
-            float nuevaPosY = qBound(minY, personaje->y(), maxY);
-            personaje->setY(nuevaPosY);
-        }
+            float minX = 0;
+            float maxX = fondoX3 + fondoItem3->pixmap().width() - personaje->boundingRect().width();
+            float nuevaPosX = qBound(minX, personaje->x(), maxX);
+            personaje->setX(nuevaPosX);
 
-        // Movimiento de personajes adicionales
-        npc1->moverPersonajeAdicional(5, minX, maxX);
-        npc2->moverPersonajeAdicional(5, minX, maxX);
+            if (saltando) {
+                personaje->setY(personaje->y() + velocidadSalto);
+                velocidadSalto += gravedad;
+
+                if (personaje->y() >= 530) {
+                    personaje->setY(530);
+                    saltando = false;
+                    enElAire = false;
+                    velocidadSalto = 0;
+                }
+            } else {
+                float minY = 0;
+                float maxY = 530;
+                float nuevaPosY = qBound(minY, personaje->y(), maxY);
+                personaje->setY(nuevaPosY);
+            }
+
+            // Movimiento de personajes adicionales
+            npc1->moverPersonajeAdicional(5, minX, maxX);
+            npc2->moverPersonajeAdicional(5, minX, maxX);
+        }
     }
 }
 
@@ -194,11 +202,17 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event) {
         QMainWindow::keyReleaseEvent(event);
     }
 }
-
+void MainWindow::moverNPCsIndependientes() {
+    // Llama al método moverPersonajeAdicional de cada NPC para actualizar su posición
+    npc1->moverPersonajeAdicional(5, 400, 650);
+    npc2->moverPersonajeAdicional(5, 500, 750);
+    // Agrega más llamadas para otros NPCs si los tienes
+}
 void MainWindow::detenerAnimacionEspecial() {
     personaje->detenerAnimacionEspecial();
     modoEspecial = false;
     animando = false;
     temporizadorEspecial->stop();
 }
+
 
