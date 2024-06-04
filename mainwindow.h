@@ -11,6 +11,9 @@
 #include "personajes.h"
 #include "objetos.h"
 #include "particula.h"
+#include "pendulo.h"
+
+
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -53,6 +56,20 @@ private:
     Objeto *objetointeractivorectangulo;
     Objeto *objetointeractivorectangulo2;
     Objeto *objetointeractivorectangulo3;
+    Objeto *objetointeractivorectangulo4;
+    Objeto *objetointeractivorectangulo5;
+    Objeto *objetointeractivorectangulo6;
+    Objeto *objetointeractivorectangulo7;
+    Objeto *objetointeractivocaja;
+    Objeto *objetointeractivocaja2;
+    Objeto *objetointeractivocaja3;
+    Objeto *objetointeractivocaja4;
+    Objeto *objetointeractivocaja5;
+    Objeto *objetointeractivocaja6;
+    Objeto *objetointeractivocaja7;
+    Objeto *objetointeractivocaja8;
+    Objeto *objetointeractivocaja9;
+    Objeto *objetointeractivocaja10;
     QGraphicsPixmapItem *fondoItem1;
     QGraphicsPixmapItem *fondoItem2;
     QGraphicsPixmapItem *fondoItem3;
