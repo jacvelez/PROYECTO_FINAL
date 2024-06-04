@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include "personajes.h"
 #include "objetos.h"
+#include "particula.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -46,6 +47,12 @@ private:
     Personaje *personaje;
     Personaje *npc1;
     Personaje *npc2;
+    Objeto *objetoInteractivo;
+    Objeto *objetoInteractivo1;
+    Objeto *objetoInteractivo2;
+    Objeto *objetointeractivorectangulo;
+    Objeto *objetointeractivorectangulo2;
+    Objeto *objetointeractivorectangulo3;
     QGraphicsPixmapItem *fondoItem1;
     QGraphicsPixmapItem *fondoItem2;
     QGraphicsPixmapItem *fondoItem3;
