@@ -27,28 +27,103 @@
         objetoInteractivo2->setPos(600, 600);
         objetoInteractivo2->setSize(100, 100);
         escena->addItem(objetoInteractivo2);
-        objetoInteractivo2->setZValue(2);
+
         Objeto *objetoInteractivo3 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
         objetoInteractivo3->setPos(600, 500);
         objetoInteractivo3->setSize(100, 100);
         escena->addItem(objetoInteractivo3);
-        objetoInteractivo3->setZValue(2);
+
         Objeto *objetointeractivorectangulo = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
         objetointeractivorectangulo->setPos(800, 410);
         objetointeractivorectangulo->setSize(100, 100);
         escena->addItem(objetointeractivorectangulo);
+
         Objeto *objetointeractivorectangulo2 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
         objetointeractivorectangulo2->setPos(900, 410);
         objetointeractivorectangulo2->setSize(100, 100);
         escena->addItem(objetointeractivorectangulo2);
+
         Objeto *objetointeractivorectangulo3 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
         objetointeractivorectangulo3->setPos(1000, 410);
         objetointeractivorectangulo3->setSize(100, 100);
         escena->addItem(objetointeractivorectangulo3);
 
+        Objeto *objetointeractivorectangulo4 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
+        objetointeractivorectangulo4->setPos(1200, 410);
+        objetointeractivorectangulo4->setSize(100, 100);
+        escena->addItem(objetointeractivorectangulo4);
+
+        Objeto *objetointeractivorectangulo5 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
+        objetointeractivorectangulo5->setPos(1400, 410);
+        objetointeractivorectangulo5->setSize(100, 100);
+        escena->addItem(objetointeractivorectangulo5);
+
+        Objeto *objetointeractivorectangulo6 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
+        objetointeractivorectangulo6->setPos(1600, 410);
+        objetointeractivorectangulo6->setSize(100, 100);
+        escena->addItem(objetointeractivorectangulo6);
+
+        Objeto *objetointeractivocaja = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja->setPos(1750, 600);
+        objetointeractivocaja->setSize(100, 100);
+        escena->addItem(objetointeractivocaja);
+
+        Objeto *objetointeractivocaja2 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja2->setPos(1850, 600);
+        objetointeractivocaja2->setSize(100, 100);
+        escena->addItem(objetointeractivocaja2);
+
+        Objeto *objetointeractivocaja3 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja3->setPos(1850, 500);
+        objetointeractivocaja3->setSize(100, 100);
+        escena->addItem(objetointeractivocaja3);
+
+        Objeto *objetointeractivocaja4 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja4->setPos(1950, 600);
+        objetointeractivocaja4->setSize(100, 100);
+        escena->addItem(objetointeractivocaja4);
+
+        Objeto *objetointeractivocaja5 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja5->setPos(1950, 500);
+        objetointeractivocaja5->setSize(100, 100);
+        escena->addItem(objetointeractivocaja5);
+
+        Objeto *objetointeractivocaja6 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja6->setPos(1950, 400);
+        objetointeractivocaja6->setSize(100, 100);
+        escena->addItem(objetointeractivocaja6);
+
+        Objeto *objetointeractivorectangulo7 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/piso.png");
+        objetointeractivorectangulo7->setPos(2200, 350);
+        objetointeractivorectangulo7->setSize(100, 100);
+        escena->addItem(objetointeractivorectangulo7);
+
+        Objeto *objetointeractivocaja7 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja7->setPos(3000, 600);
+        objetointeractivocaja7->setSize(100, 100);
+        escena->addItem(objetointeractivocaja7);
+
+        Objeto *objetointeractivocaja8 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja8->setPos(3000, 500);
+        objetointeractivocaja8->setSize(100, 100);
+        escena->addItem(objetointeractivocaja8);
 
 
+        Objeto *objetointeractivocaja9 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja9->setPos(3000, 400);
+        objetointeractivocaja9->setSize(100, 100);
+        escena->addItem(objetointeractivocaja9);
 
+        Objeto *objetointeractivocaja10 = new Objeto("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/objetos/caja.png");
+        objetointeractivocaja10->setPos(3000, 300);
+        objetointeractivocaja10->setSize(100, 100);
+        escena->addItem(objetointeractivocaja10);
+
+
+        Pendulo *pendulo = new Pendulo();
+        pendulo->setPos(300, 200); // Ajustar la posición según sea necesario
+        escena->addItem(pendulo);
+        pendulo->iniciarMovimiento(); // Iniciar el movimiento del péndulo
 
         // Crear personaje principal y NPCs, establecer posiciones y añadirlos a la escena
         personaje = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/sprites/Prisoner_1.png", 6, 4);
@@ -60,7 +135,7 @@
         npc2 = new Personaje("C:/Users/Juan Andres/Desktop/UDEA/INFORMATICA II/PROYECTO FINAL/PROYECTOFINAL/imagenes/sprites/blanco.png", 8, 1);
         npc2->setZValue(2);
 
-        int posicionInicialX = 200;
+        int posicionInicialX = 300;
         int posicionInicialY = 530;
         personaje->setPos(posicionInicialX, posicionInicialY);
 
@@ -132,16 +207,14 @@ void MainWindow::moverPersonaje() {
 
         bool colisionConCaja = false;
 
-        // Verifica colisiones con los NPCs y registra si hay colisión con la caja
         if (personaje->collidesWithItem(npc1) || personaje->collidesWithItem(npc2)) {
-            // Si hay colisión con alguno de los NPCs, muestra el mensaje y devuelve al personaje al punto inicial
             mostrarMensaje("Te atraparon, intenta de nuevo");
-            personaje->setPos(200, 530); // Regresar al personaje a la posición inicial
+            personaje->setPos(200, 530);
             colisionConCaja = true;
         } else {
             colisionConCaja = false;
             float minX = 0;
-            float maxX = escena->width() - personaje->boundingRect().width();
+            float maxX = 5000; // Cambia este valor a 5000
             float nuevaPosX = qBound(minX, personaje->x(), maxX);
             personaje->setX(nuevaPosX);
 
@@ -162,17 +235,16 @@ void MainWindow::moverPersonaje() {
                 personaje->setY(nuevaPosY);
             }
 
-            // Movimiento de personajes adicionales
             npc1->moverPersonajeAdicional(5, minX, maxX);
             npc2->moverPersonajeAdicional(5, minX, maxX);
         }
 
-        // Si no hay colisión con la caja, verifica otras colisiones
         if (!colisionConCaja) {
             detectarColisiones();
         }
     }
 }
+
 
 
 void MainWindow::detectarColisiones() {
