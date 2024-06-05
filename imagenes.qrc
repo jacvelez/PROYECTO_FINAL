@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes/objetos/pendulo.png</file>
+        <file>imagenes/objetos/bala.png</file>
+        <file>imagenes/objetos/caja.png</file>
+        <file>imagenes/objetos/piso.png</file>
+        <file>imagenes/sprites/blanco.png</file>
+        <file>imagenes/sprites/Prisoner_1.png</file>
+        <file>imagenes/escenas/escena nivel 1.jpg</file>
+    </qresource>
+</RCC>
