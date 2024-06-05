@@ -60,6 +60,9 @@ private:
     Objeto *objetointeractivorectangulo5;
     Objeto *objetointeractivorectangulo6;
     Objeto *objetointeractivorectangulo7;
+    Objeto *objetointeractivorectangulo8;
+    Objeto *objetointeractivorectangulo9;
+    Objeto *objetointeractivorectangulo10;
     Objeto *objetointeractivocaja;
     Objeto *objetointeractivocaja2;
     Objeto *objetointeractivocaja3;
@@ -83,3 +86,4 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
