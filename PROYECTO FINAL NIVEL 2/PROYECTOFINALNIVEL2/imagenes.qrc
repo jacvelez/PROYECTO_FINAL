@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes/objetos/bala.png</file>
+        <file>imagenes/objetos/caja.png</file>
+        <file>imagenes/objetos/estalactitas.png</file>
+        <file>imagenes/objetos/faro.png</file>
+        <file>imagenes/objetos/pendulo.png</file>
+        <file>imagenes/objetos/piso.png</file>
+        <file>imagenes/sprites/barco_prisionero.png</file>
+        <file>imagenes/sprites/barco_enemigo.png</file>
+        <file>imagenes/sprites/blanco.png</file>
+        <file>imagenes/sprites/Prisoner_1.png</file>
+        <file>imagenes/escenas/escena nivel 1.jpg</file>
+        <file>imagenes/escenas/ESCENA2_NIVEL2.jpg</file>
+        <file>imagenes/objetos/faro2.png</file>
+    </qresource>
+</RCC>
